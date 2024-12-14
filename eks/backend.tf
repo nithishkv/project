@@ -6,15 +6,18 @@ terraform {
       version = "~> 5.49.0"
     }
   }
+
   backend "s3" {
-    bucket         = "my-ews-baket1122"
-    region         = "us-east-2"
-    key            = "eks/terraform.tfstate"
-    dynamodb_table = "Lock-Files"
-    encrypt        = true
+    bucket         = "my-ews-bucket-12345"        # Replace with your bucket name
+    region         = "ap-south-1"                  # Your desired region
+    key            = "eks/terraform.tfstate"      # The path to store the state file
+    dynamodb_table = "Lock-Files"                  # DynamoDB table for state locking
+    encrypt        = true                          # Enable encryption for state file
   }
 }
 
 provider "aws" {
-  region  = var.aws-region
+  region = var.aws-region
 }
+
+
